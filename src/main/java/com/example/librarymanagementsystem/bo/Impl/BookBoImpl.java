@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 public class BookBoImpl implements BookBo {
     @Autowired
     private BookDao bookDao;
-    @Autowired
+     @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public boolean saveBook(BookDto dto) {
-        if (bookDao.existsById(dto.getIsbn())){
+        if (bookDao.existsById(dto.getId())){
             return false;
         }else {
             bookDao.save(modelMapper.map(dto, Book.class));

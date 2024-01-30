@@ -1,5 +1,6 @@
 package com.example.librarymanagementsystem.controller;
 
+import com.example.librarymanagementsystem.bo.BookBo;
 import com.example.librarymanagementsystem.bo.Impl.BookBoImpl;
 import com.example.librarymanagementsystem.dto.BookDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class BookController {
     @Autowired
-    private BookBoImpl bookBo;
+    private BookBo bookBo;
 
     @PostMapping("/saveBook")
     public String saveBook(@RequestBody BookDto bookDto){

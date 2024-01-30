@@ -13,7 +13,9 @@ import lombok.NoArgsConstructor;
 
 public class Book {
     @Id
-    private int isbn;
+    @GeneratedValue(strategy =GenerationType.AUTO)
+    private int id;
+    private String isbn;
     private String title;
     private String author;
     private String category;
