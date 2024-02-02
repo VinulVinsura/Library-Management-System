@@ -3,20 +3,22 @@ package com.example.librarymanagementsystem.controller;
 import com.example.librarymanagementsystem.bo.BookBo;
 import com.example.librarymanagementsystem.bo.Impl.BookBoImpl;
 import com.example.librarymanagementsystem.dto.BookDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/book")
-
+@RequiredArgsConstructor
 public class BookController {
-    @Autowired
-    private BookBo bookBo;
+
+    final private BookBo bookBo;
 
     @PostMapping("/saveBook")
+    @ResponseStatus(HttpStatus.CREATED)
     public String saveBook(@RequestBody BookDto bookDto){
         boolean isSave = bookBo.saveBook(bookDto);
         if (isSave){
@@ -24,5 +26,10 @@ public class BookController {
         }else {
             return "Error";
         }
+    }
+    @GetMapping("/getBooks")
+    @ResponseStatus(HttpStatus.FOUND)
+    public List<BookDto> getBook(){
+       return bookBo.getBook();
     }
 }

@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 
 
 public interface BookDao extends JpaRepository<Book,Integer> {
+
+    Book getBookByIsbn(String isbn);
 }

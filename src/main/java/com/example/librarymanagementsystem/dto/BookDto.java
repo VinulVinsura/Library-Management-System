@@ -14,5 +14,5 @@ public class BookDto {
     private String title;
     private String author;
     private String category;
-    private Integer qty;
+    private int qty;
 }
