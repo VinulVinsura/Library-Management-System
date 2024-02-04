@@ -7,10 +7,11 @@ import java.util.List;
 
 public interface BookBo {
     boolean saveBook(BookDto dto);
-    Book getByIsbn(String isbn);
+
     List<BookDto> getBook();
     boolean deleteBook(int id);
     BookDto searchBook(int id);
+    BookDto searchBookByIsbn(String isbn);
 
 }
 

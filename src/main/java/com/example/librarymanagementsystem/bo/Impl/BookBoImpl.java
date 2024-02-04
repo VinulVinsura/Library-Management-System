@@ -38,16 +38,11 @@ public class BookBoImpl implements BookBo {
        }
     }
 
-    @Override
-    public Book getByIsbn(String isbn) {
-        Book bookByIsbn = bookDao.getBookByIsbn(isbn);
-        System.out.println(bookByIsbn.getAuthor());
-        return null;
-    }
+
 
     @Override
     public List<BookDto> getBook() {
-        List<Book> bookList = bookDao.findAll();
+       List<Book> bookList = bookDao.findAll();
         return modelMapper.map(bookList,new TypeToken<ArrayList<BookDto>>(){}.getType());
     }
 
@@ -70,6 +65,17 @@ public class BookBoImpl implements BookBo {
         }
         return null;
     }
+
+    @Override
+    public BookDto searchBookByIsbn(String isbn) {
+        Book byIsbn = bookDao.findByIsbn(isbn);
+        System.out.println("vinsura");
+        return modelMapper.map(byIsbn,BookDto.class);
+    }
+
+
+
+
 
 
 }

@@ -44,12 +44,18 @@ public class BookController {
     }
     @GetMapping("/getBookById/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public BookDto searchBook(@PathVariable int id){
+    public ResponseEntity<BookDto> searchBook(@PathVariable int id){
         BookDto bookDto = bookBo.searchBook(id);
         if (bookDto!=null) {
-            return bookDto;
+            return ResponseEntity.ok(bookDto);
         }else {
             return null;
         }
+    }
+    @GetMapping("/getBookByIsbn/{isbn}")
+    public BookDto searchBookByIsbn(@PathVariable String isbn){
+        BookDto bookDto = bookBo.searchBookByIsbn(isbn);
+        System.out.println("vinul");
+        return bookDto;
     }
 }
