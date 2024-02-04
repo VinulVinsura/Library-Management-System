@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -59,6 +60,15 @@ public class BookBoImpl implements BookBo {
             return false;
         }
 
+    }
+
+    @Override
+    public BookDto searchBook(int id) {
+        if (bookDao.existsById(id)){
+            Optional<Book> book = bookDao.findById(id);
+            return modelMapper.map(book,BookDto.class);
+        }
+        return null;
     }
 
 
