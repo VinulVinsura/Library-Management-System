@@ -20,6 +20,9 @@ import java.util.List;
 public class BookBoImpl implements BookBo {
 
     final BookDao bookDao;  //Dependace injection anothe part (Constructor Injection)
+    // BookBoImpl(BookDao bookDao){
+    //      this.BookDao=bookDao
+    // }
 
     final ModelMapper modelMapper; // Constructor Injection
 
@@ -45,6 +48,17 @@ public class BookBoImpl implements BookBo {
     public List<BookDto> getBook() {
         List<Book> bookList = bookDao.findAll();
         return modelMapper.map(bookList,new TypeToken<ArrayList<BookDto>>(){}.getType());
+    }
+
+    @Override
+    public boolean deleteBook(int id) {
+        if (bookDao.existsById(id)){
+            bookDao.deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
 

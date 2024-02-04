@@ -9,6 +9,7 @@ public interface BookBo {
     boolean saveBook(BookDto dto);
     Book getByIsbn(String isbn);
     List<BookDto> getBook();
+    boolean deleteBook(int id);
 
 }
 

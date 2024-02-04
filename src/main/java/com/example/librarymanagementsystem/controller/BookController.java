@@ -32,4 +32,13 @@ public class BookController {
     public List<BookDto> getBook(){
        return bookBo.getBook();
     }
+
+    @DeleteMapping("/deleteBook/{id}")
+    public String deleteBook(@PathVariable  int id){
+        if (bookBo.deleteBook(id)){
+            return "Book Deleted";
+        }else {
+            return "Error";
+        }
+    }
 }
